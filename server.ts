@@ -15,6 +15,7 @@ app.use("/favicon.ico", express.static("src/assets/favicon.ico"));
 app.get("*", (req: Request, res: Response) => {
   const context = {};
   const location = req.url;
+  console.log(req.url);
   try {
     const content = ReactDOMServer.renderToString(
       React.createElement(
