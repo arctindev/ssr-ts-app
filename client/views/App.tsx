@@ -4,7 +4,7 @@ import HomePreload from "./Home/HomePreload";
 import AboutPreload from "./About/AboutPreload";
 import Page404Preload from "./404/Page404Preload";
 import ServicesPreload from "./Services/ServicesPreload";
-import Template from "../components/templates/template";
+import Template from "../components/templates/Template";
 import loadable from "@loadable/component";
 
 const About = loadable(() => import("./About/About"), {
