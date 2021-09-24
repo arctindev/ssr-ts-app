@@ -1,0 +1,48 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "Frontend:build": "webpack --config webpack.config.js --watch",
+    "Server:dev": "ts-node-dev server.ts",
+    "start": "ts-node server.ts",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
+    "@loadable/babel-plugin": "^5.13.2",
+    "@loadable/component": "^5.15.0",
+    "@types/express": "^4.17.13",
+    "@types/loadable__component": "^5.13.4",
+    "@types/node": "^16.9.6",
+    "@types/react": "^17.0.24",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-router": "^5.1.16",
+    "@types/react-router-dom": "^5.3.0",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.3.0",
+    "express": "^4.17.1",
+    "mini-css-extract-plugin": "^2.3.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router": "^5.2.1",
+    "react-router-dom": "^5.3.0",
+    "ts-node": "^10.2.1",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.3",
+    "webpack": "^5.53.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.2.1"
+  },
+  "devDependencies": {
+    "prettier": "^2.4.1"
+  }
+}
