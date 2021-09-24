@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router";
 import { html } from "./src/html";
-import App from "./client/views/App";
+import App from "./client/App";
 
 const app: Application = express();
 const PORT = process.env.PORT || 5000;

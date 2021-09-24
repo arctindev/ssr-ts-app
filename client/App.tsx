@@ -1,22 +1,22 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import HomePreload from "./Home/HomePreload";
-import AboutPreload from "./About/AboutPreload";
-import Page404Preload from "./404/Page404Preload";
-import ServicesPreload from "./Services/ServicesPreload";
-import Template from "./Template";
+import HomePreload from "./views/Home/HomePreload";
+import AboutPreload from "./views/About/AboutPreload";
+import Page404Preload from "./views/404/Page404Preload";
+import ServicesPreload from "./views/Services/ServicesPreload";
+import Template from "./components/templates/Template";
 import loadable from "@loadable/component";
 
-const About = loadable(() => import("./About/About"), {
-  fallback: <Page404Preload />,
-});
-const Page404 = loadable(() => import("./404/Page404"), {
+const About = loadable(() => import("./views/About/About"), {
   fallback: <AboutPreload />,
 });
-const Services = loadable(() => import("./Services/Services"), {
+const Page404 = loadable(() => import("./views/404/Page404"), {
+  fallback: <Page404Preload />,
+});
+const Services = loadable(() => import("./views/Services/Services"), {
   fallback: <ServicesPreload />,
 });
-const Home = loadable(() => import("./Home/Home"), {
+const Home = loadable(() => import("./views/Home/Home"), {
   fallback: <HomePreload />,
 });
 
