@@ -1,6 +1,6 @@
 import React from "react";
-import Footer from "../molecules/Footer/Footer";
-import Header from "../molecules/Header/Header";
+import Footer from "../components/molecules/Footer/Footer";
+import Header from "../components/molecules/Header/Header";
 
 interface MyProps {
   children: React.ReactNode;
