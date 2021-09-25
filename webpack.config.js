@@ -10,7 +10,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".scss", ".css"],
+    extensions: [".tsx", ".ts", ".js", ".css"],
   },
   mode: "production",
   entry: ["./client/index.tsx"],
