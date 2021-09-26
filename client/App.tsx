@@ -7,18 +7,30 @@ import ServicesPreload from "./views/Services/ServicesPreload";
 import Template from "./components/templates/Template";
 import loadable from "@loadable/component";
 
-const About = loadable(() => import("./views/About/About"), {
-  fallback: <AboutPreload />,
-});
-const Page404 = loadable(() => import("./views/404/Page404"), {
-  fallback: <Page404Preload />,
-});
-const Services = loadable(() => import("./views/Services/Services"), {
-  fallback: <ServicesPreload />,
-});
-const Home = loadable(() => import("./views/Home/Home"), {
-  fallback: <HomePreload />,
-});
+const About = loadable(
+  () => import(/* webpackChunkName: "about" */ "./views/About/About"),
+  {
+    fallback: <AboutPreload />,
+  }
+);
+const Page404 = loadable(
+  () => import(/* webpackChunkName: "404" */ "./views/404/Page404"),
+  {
+    fallback: <Page404Preload />,
+  }
+);
+const Services = loadable(
+  () => import(/* webpackChunkName: "services" */ "./views/Services/Services"),
+  {
+    fallback: <ServicesPreload />,
+  }
+);
+const Home = loadable(
+  () => import(/* webpackChunkName: "home" */ "./views/Home/Home"),
+  {
+    fallback: <HomePreload />,
+  }
+);
 
 interface MyProps {}
 

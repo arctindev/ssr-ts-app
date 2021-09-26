@@ -21,6 +21,6 @@ Any css code needed for real app code will be contained in module.css and import
 
 ==================================================================
 
-So, the server sends raw html file, with content rendered based of route. Then browser requests a css file from express static dir which is a /build folder, then user is able to view a styled no-js version of an app. Then a script bundle.js is downloaded. Which inject the js functionality and handles user request from that point. 
+So, the server sends raw html file, with content rendered based of route. Then browser requests a css file from express static dir which is a /build folder, then user is able to view a styled no-js version of an app. Then a script bundle.js is downloaded. Which inject the js functionality and handles user request from that point.
 
 Because every page is dynamicly imported, if user switch route, skeleton will be send and app should be able to request a chunk, and module.css to handle app view and functionality.

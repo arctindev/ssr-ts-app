@@ -15,8 +15,9 @@ module.exports = {
   mode: "production",
   entry: ["./client/index.tsx"],
   output: {
-    filename: "main.js",
-    path: path.resolve(__dirname, "build"),
+    filename: "[name].js",
+    chunkFilename: "[name].js",
+    path: path.resolve(__dirname, "public"),
   },
   module: {
     rules: [
