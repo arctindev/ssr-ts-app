@@ -6,9 +6,8 @@ import { promisify } from "util";
 import fs from "fs";
 import { StaticRouter } from "react-router";
 import { html } from "./server/html";
-import App from "./client/App";
+import App from "./client/views/App";
 import { getChunkName } from "./server/utils/getChunkName";
-
 
 //=============================================
 // Ports
@@ -20,9 +19,9 @@ import { getChunkName } from "./server/utils/getChunkName";
 //             2. http/1 : port 80
 // ============================================
 
-const http : Application = express();
+const http: Application = express();
 
-http.get("*", function (req : Request, res : Response) {
+http.get("*", function (req: Request, res: Response) {
   res.redirect("https://" + req.headers.host);
 });
 
@@ -43,27 +42,26 @@ interface Http2Response extends Response {
   push: any;
 }
 
-app.get("*", async (req : Request, res : Http2Response) => {
+app.get("*", async (req: Request, res: Http2Response) => {
   const context = {};
-  const location : string = req.url;
-  const content : string | undefined = ReactDOMServer.renderToString(
+  const location: string = req.url;
+  const content: string | undefined = ReactDOMServer.renderToString(
     React.createElement(
       StaticRouter,
       { location, context },
       React.createElement(App)
     )
   );
-
   if (!content) {
     return res.redirect("/404");
   }
 
-  const jsBundle = getChunkName(location);
+  const jsChunk = getChunkName(location);
 
   try {
     if (res.push) {
-      [
-        { file: `${jsBundle}`, mime: `application/javascript` },
+      [ 
+        { file: `${jsChunk}`, mime: `application/javascript` },
         { file: `/main.js`, mime: `application/javascript` },
         { file: "/main.css", mime: `text/css` },
       ].forEach(async (file) => {
@@ -88,11 +86,10 @@ spdy
   .createServer(
     {
       key: fs.readFileSync("./ssl/server.key"),
-      cert: fs.readFileSync("./ssl/server.crt"),
-      requestCert: false,
-      rejectUnauthorized: false
+      cert: fs.readFileSync("./ssl/server.cert"),
     },
     app
-  ).listen(443, () => {
-  console.log("Server listen on port 443");
-});
+  )
+  .listen(443, () => {
+    console.log("Server listen on port 443");
+  });

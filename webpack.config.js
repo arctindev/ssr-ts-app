@@ -13,7 +13,9 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js", ".css"],
   },
   mode: "production",
-  entry: ["./client/index.tsx"],
+  entry: {
+    'main' : "./client/index.tsx",
+    'service-worker':"./client/service-worker.ts"},
   output: {
     filename: "[name].js",
     chunkFilename: "[name].js",

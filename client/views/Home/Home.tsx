@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./Home.module.css";
 
 interface MyProps {
   number: number;
@@ -31,7 +30,7 @@ class Home extends React.Component<MyProps, MyState> {
 
   render() {
     return (
-      <div className={styles.Content}>
+      <div >
         <main>
           <h1>This is Home page content you can counter</h1>
           <p>{this.state.counter}</p>
