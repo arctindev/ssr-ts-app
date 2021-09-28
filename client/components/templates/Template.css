@@ -1,0 +1,6 @@
+.template {
+  display: grid;
+  width: 100%;
+  min-height: 100vh;
+  grid-template-rows: 100px 1fr 100px;
+}

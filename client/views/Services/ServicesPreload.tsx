@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const ServicesPreload = () => {
   return (
-    <div>
+    <div className="content__wrapper">
       <main>
         <h1>This is Services Page</h1>
       </main>

@@ -1,47 +1,43 @@
-const cacheName = 'v1';
+const cacheName = "v1";
 
-const cacheAssets = [
-  'index.html',
-  'main.js',
-  'main.css',
-  'home.js',
-  'about.js',
-  'services.js',
-  'favicon.ico',
-  'manifest.json',
-]
-
-self.addEventListener('install' , (event : any) => {
-  console.log('Service worker: installed');
-
-  event.waitUntil(
-    caches.open(cacheName).then(cache => {
-      console.log('Service Worker : Caching Files')
-      cache.addAll(cacheAssets);
-    })
-    .then(() => (self as any).skipWaiting())
-  );
+self.addEventListener("install", (event: any) => {
+  console.log("Service worker: installed");
 });
 
-self.addEventListener('activate' , (event : any) => {
-  console.log('Service worker: activated');
+self.addEventListener("activate", (event: any) => {
+  console.log("Service worker: activated");
   event.waitUntil(
-    caches.keys().then(cacheNames => {
+    caches.keys().then((cacheNames) => {
       return Promise.all(
-        cacheNames.map(cache => {
-          if(cache!== cacheName) {
-            console.log('Service Worker: Clearing old cache');
+        cacheNames.map((cache) => {
+          if (cache !== cacheName) {
+            console.log("Service Worker: Clearing old cache");
             return caches.delete(cache);
           }
         })
-      )
+      );
     })
-  )
+  );
 });
 
-self.addEventListener('fetch', (event : any) => {
-  console.log('Service Worker: Fetching');
+self.addEventListener("fetch", (event: any) => {
+  if (
+    event.request.url ===
+    "chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/react_devtools_backend.js"
+  ) {
+    return null;
+  }
+  console.log("Service Worker: Fetching", event.request.url);
   event.respondWith(
-    fetch(event.request).catch(() => caches.match(event.request))
-  )
-})
+    fetch(event.request)
+      .then((res) => {
+        const resClone = res.clone();
+        caches.open(cacheName).then((cache) => {
+          cache.put(event.request, resClone);
+        });
+        return res;
+      })
+      .catch(() => caches.match(event.request))
+      .then((res) => res)
+  );
+});

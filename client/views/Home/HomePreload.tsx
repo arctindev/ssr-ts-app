@@ -2,7 +2,7 @@ import React from "react";
 
 const HomePreload = () => {
   return (
-    <div>
+    <div className="content__wrapper">
       <main>
         <h1>This is Home page content you can counter</h1>
         <p>5</p>

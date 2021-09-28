@@ -1,42 +1,30 @@
 /* ============================================= */
+/*                 Template imports              */
+/* ============================================= */
+
+@import url("./components/templates/Template.css");
+@import url("./components/molecules/Footer/Footer.css");
+@import url("./components/molecules/Header/Header.css");
+
+/* ============================================= */
+/*                 Pages imports                 */
+/* ============================================= */
+
+@import url("./views/404/Page404.css");
+@import url("./views/Home/Home.css");
+@import url("./views/Services/Services.css");
+@import url("./views/About/About.css");
+
+/* ============================================= */
 /*                 Global Styles                 */
 /* ============================================= */
 
 body {
-  background-color: rgb(179, 241, 56);
+  background-color: rgb(240, 240, 240);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-/* ============================================= */
-/*                 App Template                  */
-/* ============================================= */
-
-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-nav {
-  display: flex;
-  width: 50%;
-  justify-content: space-evenly;
-}
-
-.Template {
-  display: grid;
-  width: 100%;
-  min-height: 100vh;
-  grid-template-rows: 100px 1fr 100px;
 }

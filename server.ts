@@ -10,13 +10,13 @@ import App from "./client/views/App";
 import { getChunkName } from "./server/utils/getChunkName";
 
 //=============================================
-// Ports
+//                    Ports
 // 1. http/1 : port 80
 // 2. https/2 : port 443
 //=============================================
 
 // ============================================
-//             2. http/1 : port 80
+//             1. http/1 : port 80
 // ============================================
 
 const http: Application = express();
@@ -60,7 +60,7 @@ app.get("*", async (req: Request, res: Http2Response) => {
 
   try {
     if (res.push) {
-      [ 
+      [
         { file: `${jsChunk}`, mime: `application/javascript` },
         { file: `/main.js`, mime: `application/javascript` },
         { file: "/main.css", mime: `text/css` },
