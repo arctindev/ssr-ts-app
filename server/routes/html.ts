@@ -1,4 +1,17 @@
-export const html = (content: string) => {
+import React from "react";
+import ReactDOMServer from "react-dom/server";
+import { StaticRouter } from "react-router";
+import { App } from "./../../client/views/App";
+
+export const getHtml = (location: string) => {
+  const content: string | undefined = ReactDOMServer.renderToString(
+    React.createElement(
+      StaticRouter,
+      { location, context:{} },
+      React.createElement(App)
+    )
+  );
+
   return `
 <!DOCTYPE html>
 <html lang="en">
