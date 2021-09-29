@@ -7,12 +7,12 @@
 /*              1. Class Component               */
 /* ============================================= */
 
-// import React from "react";
+// import React, { Component } from "react";
 // import { Link } from "react-router-dom";
 
 // interface MyProps {}
 // interface MyState {}
-// class Header extends React.Component<MyProps, MyState> {
+// export class Header extends Component<MyProps, MyState> {
 //   render() {
 //     return (
 //       <header>
@@ -27,8 +27,6 @@
 //   }
 // }
 
-// export default Header;
-
 /* ============================================= */
 /*              2. Functional Component          */
 /* ============================================= */
@@ -36,7 +34,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+export const Header = () => {
   return (
     <header>
       <span>Branding</span>
@@ -48,5 +46,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;

@@ -6,7 +6,7 @@ import { promisify } from "util";
 import fs from "fs";
 import { StaticRouter } from "react-router";
 import { html } from "./server/html";
-import App from "./client/views/App";
+import { App } from "./client/views/App";
 import { getChunkName } from "./server/utils/getChunkName";
 
 //=============================================
@@ -52,6 +52,7 @@ app.get("*", async (req: Request, res: Http2Response) => {
       React.createElement(App)
     )
   );
+
   if (!content) {
     return res.redirect("/404");
   }
@@ -61,9 +62,9 @@ app.get("*", async (req: Request, res: Http2Response) => {
   try {
     if (res.push) {
       [
-        { file: `${jsChunk}`, mime: `application/javascript` },
-        { file: `/main.js`, mime: `application/javascript` },
         { file: "/main.css", mime: `text/css` },
+        { file: `/main.js`, mime: `application/javascript` },
+        { file: `/${jsChunk}`, mime: `application/javascript` },
       ].forEach(async (file) => {
         res
           .push(file.file, {
@@ -77,7 +78,9 @@ app.get("*", async (req: Request, res: Http2Response) => {
     res.writeHead(200);
     res.end(await html(content));
     return res.send();
+
   } catch (error) {
+    console.log(error)
     res.status(500).send(error.toString());
   }
 });

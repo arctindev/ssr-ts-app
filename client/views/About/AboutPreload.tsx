@@ -1,6 +1,6 @@
 import React from "react";
 
-const AboutPreload = () => {
+export const AboutPreload = () => {
   return (
     <div className="content__wrapper">
       <main>
@@ -9,5 +9,3 @@ const AboutPreload = () => {
     </div>
   );
 };
-
-export default AboutPreload;

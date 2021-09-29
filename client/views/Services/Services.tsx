@@ -7,12 +7,12 @@
 /*              1. Class Component               */
 /* ============================================= */
 
-// import React from "react";
+// import React, { Component } from "react";
 
 // interface MyProps {}
 // interface MyState {}
 
-// class Services extends React.Component<MyProps, MyState> {
+// export class Services extends Component<MyProps, MyState> {
 //   constructor(props: MyProps) {
 //     super(props);
 //   }
@@ -27,11 +27,11 @@
 //   }
 // }
 
-// export default Services;
-
 /* ============================================= */
 /*              2. Functional Component          */
 /* ============================================= */
+
+import React from "react";
 
 const Services = () => {
   return (

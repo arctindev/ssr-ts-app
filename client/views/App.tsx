@@ -7,7 +7,7 @@
 /*              1. Class Component               */
 /* ============================================= */
 
-// import React from "react";
+// import React, { Component } from "react";
 // import { Switch, Route, Redirect } from "react-router-dom";
 // import HomePreload from "./Home/HomePreload";
 // import AboutPreload from "./About/AboutPreload";
@@ -47,7 +47,7 @@
 //   number: number;
 // }
 
-// class App extends React.Component<MyProps, MyState> {
+// export class App extends Component<MyProps, MyState> {
 //   constructor(props: MyProps) {
 //     super(props);
 //     this.state = {
@@ -89,19 +89,17 @@
 //   }
 // }
 
-// export default App;
-
 /* ============================================= */
 /*              2. Functional Component          */
 /* ============================================= */
 
-import { useState } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import HomePreload from "./Home/HomePreload";
-import AboutPreload from "./About/AboutPreload";
-import Page404Preload from "./404/Page404Preload";
-import ServicesPreload from "./Services/ServicesPreload";
-import Template from "../components/templates/Template";
+import React, { useState } from "react";
+import { Route, Redirect, Switch } from "react-router-dom";
+import { HomePreload } from "./Home/HomePreload";
+import { AboutPreload } from "./About/AboutPreload";
+import { Page404Preload } from "./404/Page404Preload";
+import { ServicesPreload } from "./Services/ServicesPreload";
+import { Template } from "../components/templates/Template";
 import loadable from "@loadable/component";
 
 const About = loadable(
@@ -133,7 +131,7 @@ interface MyState {
   number: number;
 }
 
-const App = () => {
+export const App = () => {
   const [state, setState] = useState<MyState>({ number: 5 });
   return (
     <Switch>
@@ -167,5 +165,3 @@ const App = () => {
     </Switch>
   );
 };
-
-export default App;
