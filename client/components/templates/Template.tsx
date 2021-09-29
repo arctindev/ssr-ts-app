@@ -7,7 +7,7 @@
 /*              1. Class Component               */
 /* ============================================= */
 
-// import React from "react";
+// import React, { Component } from "react";
 // import Footer from "../molecules/Footer/Footer";
 // import Header from "../molecules/Header/Header";
 
@@ -16,7 +16,7 @@
 // }
 // interface MyState {}
 
-// class Template extends React.Component<MyProps, MyState> {
+// export class Template extends Component<MyProps, MyState> {
 //   constructor(props: MyProps) {
 //     super(props);
 //   }
@@ -31,20 +31,18 @@
 //   }
 // }
 
-// export default Template;
-
 /* ============================================= */
 /*              2. Functional Component          */
 /* ============================================= */
 
 import React from "react";
-import Footer from "../molecules/Footer/Footer";
-import Header from "../molecules/Header/Header";
+import { Footer } from "../molecules/Footer/Footer";
+import { Header } from "../molecules/Header/Header";
 
 interface MyProps {
   children: React.ReactNode;
 }
-const Template = ({ children }: MyProps) => {
+export const Template = ({ children }: MyProps) => {
   return (
     <div className="template">
       <Header />
@@ -53,5 +51,3 @@ const Template = ({ children }: MyProps) => {
     </div>
   );
 };
-
-export default Template;

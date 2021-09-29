@@ -7,12 +7,12 @@
 /*              1. Class Component               */
 /* ============================================= */
 
-// import React from "react";
+// import React, { Component } from "react";
 
 // interface MyProps {}
 // interface MyState {}
 
-// class Page404 extends React.Component<MyProps, MyState> {
+// export class Page404 extends Component<MyProps, MyState> {
 //   render() {
 //     return (
 //       <div className="content__wrapper">
@@ -24,15 +24,13 @@
 //   }
 // }
 
-// export default Page404;
-
 /* ============================================= */
 /*              2. Functional Component          */
 /* ============================================= */
 
 import React from "react";
 
-const Page404Preload = () => {
+const Page404 = () => {
   return (
     <div className="content__wrapper">
       <main>
@@ -42,4 +40,4 @@ const Page404Preload = () => {
   );
 };
 
-export default Page404Preload;
+export default Page404;

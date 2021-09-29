@@ -7,11 +7,12 @@
 /*              1. Class Component               */
 /* ============================================= */
 
-// import React from "react";
+// import React, { Component } from "react";
 
 // interface MyProps {}
 // interface MyState {}
-// class About extends React.Component<MyProps, MyState> {
+//
+// export class About extends Component<MyProps, MyState> {
 //   constructor(props: MyProps) {
 //     super(props);
 //   }
@@ -26,14 +27,13 @@
 //   }
 // }
 
-// export default About;
-
 /* ============================================= */
 /*              2. Functional Component          */
 /* ============================================= */
 
+import React from "react";
 
-const AboutPreload = () => {
+const About = () => {
   return (
     <div className="content__wrapper">
       <main>
@@ -43,4 +43,4 @@ const AboutPreload = () => {
   );
 };
 
-export default AboutPreload;
+export default About;

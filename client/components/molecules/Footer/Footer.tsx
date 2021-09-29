@@ -7,12 +7,12 @@
 /*              1. Class Component               */
 /* ============================================= */
 
-// import React from "react";
+// import React, { Component } from "react";
 // import { Link } from "react-router-dom";
 
 // interface MyProps {}
 // interface MyState {}
-// class Footer extends React.Component<MyProps, MyState> {
+// export class Footer extends Component<MyProps, MyState> {
 //   render() {
 //     return (
 //       <footer>
@@ -27,8 +27,6 @@
 //   }
 // }
 
-// export default Footer;
-
 /* ============================================= */
 /*              2. Functional Component          */
 /* ============================================= */
@@ -36,7 +34,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer>
       <span>Branding</span>
@@ -48,5 +46,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

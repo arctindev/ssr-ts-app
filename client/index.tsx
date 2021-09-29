@@ -1,8 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import App from "./views/App";
 import "./index.css";
-import { BrowserRouter as Router } from "react-router-dom";
+import { hydrate } from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { App } from "./views/App";
 
 if (navigator.serviceWorker) {
   window.addEventListener("load", () => {
@@ -15,11 +15,11 @@ if (navigator.serviceWorker) {
   });
 }
 
-ReactDOM.hydrate(
+hydrate(
   <React.StrictMode>
-    <Router>
+    <BrowserRouter>
       <App />
-    </Router>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

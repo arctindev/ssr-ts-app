@@ -7,7 +7,7 @@
 /*              1. Class Component               */
 /* ============================================= */
 
-// import React from "react";
+// import React, { Component, MouseEvent } from "react";
 
 // interface MyProps {
 //   number: number;
@@ -16,7 +16,7 @@
 //   counter: number;
 // }
 
-// class Home extends React.Component<MyProps, MyState> {
+// export class Home extends Component<MyProps, MyState> {
 //   constructor(props: MyProps) {
 //     super(props);
 //     this.handleClick = this.handleClick.bind(this);
@@ -25,7 +25,7 @@
 //     };
 //   }
 
-//   handleClick(event: React.MouseEvent<HTMLButtonElement>) {
+//   handleClick(event: MouseEvent<HTMLButtonElement>) {
 //     const button = event.target as HTMLButtonElement;
 
 //     if (button.name === "increment") {
@@ -57,20 +57,18 @@
 //   }
 // }
 
-// export default Home;
-
 /* ============================================= */
 /*              2. Functional Component          */
 /* ============================================= */
 
-import { useState } from "react";
+import React, { useState } from "react";
 
 interface MyProps {
   number: number;
 }
 
-const Home = ({ number }: MyProps) => {
-  const [state, setState] = useState(number);
+const Home = (props: MyProps) => {
+  const [state, setState] = useState(props.number);
 
   const handleClick = (event: React.MouseEvent) => {
     const button = event.target as HTMLButtonElement;

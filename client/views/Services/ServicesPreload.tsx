@@ -1,6 +1,6 @@
 import React from "react";
 
-const ServicesPreload = () => {
+export const ServicesPreload = () => {
   return (
     <div className="content__wrapper">
       <main>
@@ -9,5 +9,3 @@ const ServicesPreload = () => {
     </div>
   );
 };
-
-export default ServicesPreload;

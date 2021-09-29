@@ -1,10 +1,19 @@
 const cacheName = "v1";
 
-self.addEventListener("install", (event: any) => {
+interface ExtendableEvent extends Event {
+	waitUntil(fn: Promise<any>): void;
+}
+
+interface FetchEvent extends Event {
+	request: Request;
+	respondWith(response: Promise<Response>|Response): Promise<Response>;
+}
+
+self.addEventListener("install", (event) => {
   console.log("Service worker: installed");
 });
 
-self.addEventListener("activate", (event: any) => {
+self.addEventListener("activate", (event: ExtendableEvent) => {
   console.log("Service worker: activated");
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -20,7 +29,7 @@ self.addEventListener("activate", (event: any) => {
   );
 });
 
-self.addEventListener("fetch", (event: any) => {
+self.addEventListener("fetch", (event : FetchEvent) => {
   if (
     event.request.url ===
     "chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/react_devtools_backend.js"

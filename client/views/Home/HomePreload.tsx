@@ -1,6 +1,6 @@
 import React from "react";
 
-const HomePreload = () => {
+export const HomePreload = () => {
   return (
     <div className="content__wrapper">
       <main>
@@ -14,5 +14,3 @@ const HomePreload = () => {
     </div>
   );
 };
-
-export default HomePreload;
