@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "Frontend:build": "webpack --config webpack.config.js --watch",
-    "Server:dev": "ts-node-dev server.ts",
-    "start": "ts-node server.ts",
+    "Backend:dev": "ts-node-dev index.ts",
+    "start": "ts-node index.ts",
     "format": "prettier --write ."
   },
   "keywords": [],
@@ -27,7 +27,6 @@
     "@types/react-dom": "^17.0.9",
     "@types/react-router": "^5.1.16",
     "@types/react-router-dom": "^5.3.0",
-    "@types/spdy": "^3.4.5",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.3.0",
     "css-minimizer-webpack-plugin": "^3.0.2",
@@ -37,7 +36,6 @@
     "react-dom": "^17.0.2",
     "react-router": "^5.2.1",
     "react-router-dom": "^5.3.0",
-    "spdy": "^4.0.2",
     "ts-node": "^10.2.1",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.4.3",

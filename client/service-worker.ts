@@ -30,12 +30,6 @@ self.addEventListener("activate", (event: ExtendableEvent) => {
 });
 
 self.addEventListener("fetch", (event : FetchEvent) => {
-  if (
-    event.request.url ===
-    "chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/react_devtools_backend.js"
-  ) {
-    return null;
-  }
   console.log("Service Worker: Fetching", event.request.url);
   event.respondWith(
     fetch(event.request)
