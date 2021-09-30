@@ -93,35 +93,35 @@
 /*              2. Functional Component          */
 /* ============================================= */
 
-import React, { useState } from "react";
-import { Route, Redirect, Switch } from "react-router-dom";
-import { HomePreload } from "./Home/HomePreload";
-import { AboutPreload } from "./About/AboutPreload";
-import { Page404Preload } from "./404/Page404Preload";
-import { ServicesPreload } from "./Services/ServicesPreload";
-import { Template } from "../components/templates/Template";
-import loadable from "@loadable/component";
+import React, { useState } from 'react';
+import { Route, Redirect, Switch } from 'react-router-dom';
+import { HomePreload } from './Home/HomePreload';
+import { AboutPreload } from './About/AboutPreload';
+import { Page404Preload } from './404/Page404Preload';
+import { ServicesPreload } from './Services/ServicesPreload';
+import { Template } from '../components/templates/Template';
+import loadable from '@loadable/component';
 
 const About = loadable(
-  () => import(/* webpackChunkName: "about" */ "./About/About"),
+  () => import(/* webpackChunkName: "about" */ './About/About'),
   {
     fallback: <AboutPreload />,
   }
 );
 const Page404 = loadable(
-  () => import(/* webpackChunkName: "404" */ "./404/Page404"),
+  () => import(/* webpackChunkName: "404" */ './404/Page404'),
   {
     fallback: <Page404Preload />,
   }
 );
 const Services = loadable(
-  () => import(/* webpackChunkName: "services" */ "./Services/Services"),
+  () => import(/* webpackChunkName: "services" */ './Services/Services'),
   {
     fallback: <ServicesPreload />,
   }
 );
 const Home = loadable(
-  () => import(/* webpackChunkName: "home" */ "./Home/Home"),
+  () => import(/* webpackChunkName: "home" */ './Home/Home'),
   {
     fallback: <HomePreload />,
   }

@@ -31,7 +31,7 @@
 /*              2. Functional Component          */
 /* ============================================= */
 
-import React from "react";
+import React from 'react';
 
 const Services = () => {
   return (

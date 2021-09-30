@@ -61,8 +61,7 @@
 /*              2. Functional Component          */
 /* ============================================= */
 
-import React, { useState } from "react";
-
+import React, { useState } from 'react';
 interface MyProps {
   number: number;
 }
@@ -73,9 +72,9 @@ const Home = (props: MyProps) => {
   const handleClick = (event: React.MouseEvent) => {
     const button = event.target as HTMLButtonElement;
 
-    if (button.name === "increment") {
+    if (button.name === 'increment') {
       setState(state + 1);
-    } else if (button.name === "decrement") {
+    } else if (button.name === 'decrement') {
       setState(state - 1);
     } else {
       throw `Button don't have a name value`;

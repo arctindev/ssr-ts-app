@@ -2,18 +2,18 @@
 /*                 Template imports              */
 /* ============================================= */
 
-@import url("./components/templates/Template.css");
-@import url("./components/molecules/Footer/Footer.css");
-@import url("./components/molecules/Header/Header.css");
+@import url('./components/templates/Template.css');
+@import url('./components/molecules/Footer/Footer.css');
+@import url('./components/molecules/Header/Header.css');
 
 /* ============================================= */
 /*                 Pages imports                 */
 /* ============================================= */
 
-@import url("./views/404/Page404.css");
-@import url("./views/Home/Home.css");
-@import url("./views/Services/Services.css");
-@import url("./views/About/About.css");
+@import url('./views/404/Page404.css');
+@import url('./views/Home/Home.css');
+@import url('./views/Services/Services.css');
+@import url('./views/About/About.css');
 
 /* ============================================= */
 /*                 Global Styles                 */

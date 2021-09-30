@@ -35,9 +35,9 @@
 /*              2. Functional Component          */
 /* ============================================= */
 
-import React from "react";
-import { Footer } from "../molecules/Footer/Footer";
-import { Header } from "../molecules/Header/Header";
+import React from 'react';
+import { Footer } from '../molecules/Footer/Footer';
+import { Header } from '../molecules/Header/Header';
 
 interface MyProps {
   children: React.ReactNode;

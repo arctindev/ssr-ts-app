@@ -28,7 +28,7 @@
 /*              2. Functional Component          */
 /* ============================================= */
 
-import React from "react";
+import React from 'react';
 
 const Page404 = () => {
   return (
