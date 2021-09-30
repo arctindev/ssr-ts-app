@@ -1,12 +1,12 @@
 const cacheName = "v1";
 
 interface ExtendableEvent extends Event {
-	waitUntil(fn: Promise<any>): void;
+  waitUntil(fn: Promise<any>): void;
 }
 
 interface FetchEvent extends Event {
-	request: Request;
-	respondWith(response: Promise<Response>|Response): Promise<Response>;
+  request: Request;
+  respondWith(response: Promise<Response> | Response): Promise<Response>;
 }
 
 self.addEventListener("install", (event) => {
@@ -29,7 +29,7 @@ self.addEventListener("activate", (event: ExtendableEvent) => {
   );
 });
 
-self.addEventListener("fetch", (event : FetchEvent) => {
+self.addEventListener("fetch", (event: FetchEvent) => {
   // if (
   //   event.request.url ===
   //   "chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/react_devtools_backend.js"
