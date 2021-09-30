@@ -3,7 +3,7 @@ import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router";
 import { App } from "./../../client/views/App";
 
-export const getHTML = (location: string) => {
+const getHTML = (location: string) => {
   const content: string | undefined = ReactDOMServer.renderToString(
     React.createElement(
       StaticRouter,
@@ -36,3 +36,5 @@ export const getHTML = (location: string) => {
 </html>
 `;
 };
+
+export default getHTML;

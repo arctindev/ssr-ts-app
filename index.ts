@@ -1,20 +1,15 @@
-import fs from "fs";
-import http2 from "http2";
-import { requestHandler } from "./server/app";
+import express, {Application, Request, Response} from "express";
+import getHTML from './server/controlers/html'
 
-const port = 3000;
-const options = {
-  key: fs.readFileSync("./ssl/server.key"),
-  cert: fs.readFileSync("./ssl/server.cert"),
-  allowHTTP1: true,
-};
+const app : Application = express();
+const PORT = process.env.PORT || 3000;
 
-const server = http2.createSecureServer(options, requestHandler);
+app.use(express.static(__dirname + '/public'));
 
-server.on("error", (error) => {
-  console.log(`Something went wrong`, error);
+app.get('/*', (req : Request, res : Response) => {
+  res.send(getHTML(req.url));
 });
 
-server.listen(port, () => {
-  console.log(`Server listen on port ${port}`);
-});
+app.listen(PORT, () => {
+  console.log(`Server listen on port ${PORT}`);
+})
