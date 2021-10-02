@@ -83,7 +83,9 @@ const Home = (props: MyProps) => {
   return (
     <div className="content__wrapper">
       <main>
-        <h1>This is very nice functional Home page content you can counter</h1>
+        <h1>
+          This is very very very functional Home page content you can counter
+        </h1>
         <p>{state}</p>
       </main>
       <section>

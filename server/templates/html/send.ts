@@ -1,10 +1,9 @@
 import render from './render';
+import { FastifyReply, FastifyRequest } from 'fastify';
 
-const sendHTML = (req: any, res: any) => {
+export default (req: FastifyRequest, res: FastifyReply) => {
   res
     .code(200)
     .header('Content-Type', 'text/html; charset=utf-8')
     .send(render(req.url));
 };
-
-export default sendHTML;

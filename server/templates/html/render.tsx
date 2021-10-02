@@ -2,7 +2,7 @@ import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { App } from '../../../client/views/App';
 
-const render = (location: string) => {
+export default (location: string) => {
   const content: string | undefined = ReactDOMServer.renderToString(
     <StaticRouter location={location} context={{}}>
       <App />
@@ -33,5 +33,3 @@ const render = (location: string) => {
   </html>
   `;
 };
-
-export default render;

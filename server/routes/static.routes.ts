@@ -1,12 +1,15 @@
 import sendHTML from '../templates/html/send';
+import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 
-const StaticRouter = (fastify: any, opts: any, done: any) => {
-  fastify.get('/', sendHTML);
-  fastify.get('/about', sendHTML);
-  fastify.get('/services', sendHTML);
-  fastify.get('/404', sendHTML);
+export default (
+  app: FastifyInstance,
+  opts: FastifyPluginOptions,
+  done: Function
+) => {
+  app.get('/', sendHTML);
+  app.get('/about', sendHTML);
+  app.get('/services', sendHTML);
+  app.get('/404', sendHTML);
 
   done();
 };
-
-export default StaticRouter;

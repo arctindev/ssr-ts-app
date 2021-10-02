@@ -1,9 +1,9 @@
-const cacheName = 'v1';
-
+const cacheName = 'app_cache';
 interface ExtendableEvent extends Event {
   waitUntil(fn: Promise<any>): void;
 }
 
+declare function skipWaiting(): void;
 interface FetchEvent extends Event {
   request: Request;
   respondWith(response: Promise<Response> | Response): Promise<Response>;
@@ -11,6 +11,7 @@ interface FetchEvent extends Event {
 
 self.addEventListener('install', (event) => {
   console.log('Service worker: installed');
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', (event: ExtendableEvent) => {
@@ -32,15 +33,20 @@ self.addEventListener('activate', (event: ExtendableEvent) => {
 self.addEventListener('fetch', (event: FetchEvent) => {
   console.log('Service Worker: Fetching', event.request.url);
   event.respondWith(
-    fetch(event.request)
-      .then((res) => {
-        const resClone = res.clone();
-        caches.open(cacheName).then((cache) => {
-          cache.put(event.request, resClone);
-        });
-        return res;
+    caches
+      .match(event.request)
+      .then((response) => {
+        return response || fetch(event.request);
       })
-      .catch(() => caches.match(event.request))
-      .then((res) => res)
+      .then((response) => {
+        console.log('Service Worker: Adding files to cache', event.request.url);
+        fetch(event.request).then((response) => {
+          const resClone = response.clone();
+          caches.open(cacheName).then((cache) => {
+            cache.put(event.request, resClone);
+          });
+        });
+        return response;
+      })
   );
 });

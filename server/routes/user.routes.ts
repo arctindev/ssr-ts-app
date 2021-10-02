@@ -1,24 +1,14 @@
-const UserRouter = (fastify: any, opts: any, done: any) => {
-  fastify.get('/add', (req: any, res: any) => {
-    res
-      .code(200)
-      .header('Content-Type', 'application/json')
-      .send({ user: 'add' });
-  });
-  fastify.get('/delete', (req: any, res: any) => {
-    res
-      .code(200)
-      .header('Content-Type', 'application/json')
-      .send({ user: 'delete' });
-  });
-  fastify.get('/update', (req: any, res: any) => {
-    res
-      .code(200)
-      .header('Content-Type', 'application/json')
-      .send({ user: 'update' });
-  });
+import { FastifyInstance, FastifyPluginOptions } from 'fastify';
+import userController from '../controllers/user.controller';
+
+export default (
+  app: FastifyInstance,
+  opts: FastifyPluginOptions,
+  done: Function
+) => {
+  app.get('/add', userController.add);
+  app.get('/update', userController.update);
+  app.get('/delete', userController.delete);
 
   done();
 };
-
-export default UserRouter;
