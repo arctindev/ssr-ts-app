@@ -11,18 +11,18 @@ interface FetchEvent extends Event {
 }
 
 self.addEventListener('install', (event) => {
-  console.log('Service worker: installed');
+  console.log('Service worker: Installed');
   self.skipWaiting();
 });
 
 self.addEventListener('activate', (event: ExtendableEvent) => {
-  console.log('Service worker: activated');
+  console.log('Service worker: Activated');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cache) => {
           if (cache !== cacheName) {
-            console.log('Service Worker: Clearing old cache');
+            console.log('Service Worker: Clearing old cache', cache);
             return caches.delete(cache);
           }
         })
@@ -40,13 +40,19 @@ self.addEventListener('fetch', (event: FetchEvent) => {
         return response || fetch(event.request);
       })
       .then((response) => {
-        console.log('Service Worker: Adding files to cache', event.request.url);
-        fetch(event.request).then((response) => {
-          const resClone = response.clone();
-          caches.open(cacheName).then((cache) => {
-            cache.put(event.request, resClone);
-          });
-        });
+        fetch(event.request)
+          .then((response) => {
+            console.log('Service Worker: Adding response to cache', response);
+            caches
+              .open(cacheName)
+              .then((cache) => {
+                cache.put(event.request, response);
+              })
+              .catch((err) =>
+                console.log('Service Worker: Cashing error', err)
+              );
+          })
+          .catch((err) => console.log('Service Worker: Fetching error', err));
         return response;
       })
   );
