@@ -1,9 +1,10 @@
 const cacheName = 'app_cache';
+
+declare function skipWaiting(): void;
+
 interface ExtendableEvent extends Event {
   waitUntil(fn: Promise<any>): void;
 }
-
-declare function skipWaiting(): void;
 interface FetchEvent extends Event {
   request: Request;
   respondWith(response: Promise<Response> | Response): Promise<Response>;

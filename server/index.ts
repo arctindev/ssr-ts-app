@@ -15,7 +15,7 @@ app.register(fastifyStatic, {
 app.register(StaticRouter);
 app.register(UserRouter, { prefix: '/api/user' });
 
-app.listen(PORT, (err) => {
+app.listen(PORT, '0.0.0.0' , (err) => {
   if (err) {
     console.error(err);
     process.exit(1);
