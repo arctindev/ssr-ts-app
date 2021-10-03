@@ -87,7 +87,7 @@ const Home = (props: MyProps) => {
         <p>{state}</p>
       </main>
       <section>
-        <button className="secretButton" name="increment" onClick={handleClick}>
+        <button name="increment" onClick={handleClick}>
           Increment
         </button>
         <button name="decrement" onClick={handleClick}>
