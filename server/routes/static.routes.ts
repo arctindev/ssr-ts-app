@@ -6,7 +6,6 @@ export default (
   opts: FastifyPluginOptions,
   done: Function
 ) => {
-
   app.get('/', sendHTML);
   app.get('/about', sendHTML);
   app.get('/services', sendHTML);

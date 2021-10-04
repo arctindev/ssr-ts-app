@@ -6,10 +6,11 @@ export default (
   opts: FastifyPluginOptions,
   done: Function
 ) => {
-
-  app.get('/add', userController.add);
-  app.get('/update', userController.update);
-  app.get('/delete', userController.delete);
+  app.get('/:id', userController.findUserById);
+  app.get('/', userController.allUsers);
+  app.post('/', userController.addUser);
+  app.patch('/', userController.updateUser);
+  app.delete('/', userController.deleteUser);
 
   done();
 };
