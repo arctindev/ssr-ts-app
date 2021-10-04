@@ -2,10 +2,12 @@
  * @jest-environment node
  */
 
-import app from '../server';
+import app from '../../server';
 
 describe('Static files test suite', () => {
   afterAll(() => app.close());
+
+  // ===================================================================================
 
   it('Sends home page html file', async () => {
     const response = await app.inject({
@@ -19,6 +21,8 @@ describe('Static files test suite', () => {
     expect(typeof response.body).toEqual(typeof 'string');
   });
 
+  // ===================================================================================
+
   it('Sends about page html file', async () => {
     const response = await app.inject({
       method: 'GET',
@@ -31,6 +35,8 @@ describe('Static files test suite', () => {
     expect(typeof response.body).toEqual(typeof 'string');
   });
 
+  // ===================================================================================
+
   it('Sends services page html file', async () => {
     const response = await app.inject({
       method: 'GET',
@@ -42,6 +48,8 @@ describe('Static files test suite', () => {
     );
     expect(typeof response.body).toEqual(typeof 'string');
   });
+
+  // ===================================================================================
 
   it('Sends 404 page html file', async () => {
     const response = await app.inject({

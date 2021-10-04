@@ -1,14 +1,27 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { v4 as uuidv4 } from 'uuid';
-import data from '../mocks/usersData';
-let usersData: object[] = data;
+
+let usersData: object[] = require('../mocks/usersData');
 
 interface UserProps {
-  id: string;
+  _id: string;
   user: string;
   age: number;
   city: string;
 }
+
+/* ================================================== */
+/* Endpoints                                          */
+/* 1: allUsers                                        */
+/* 2: findUserById                                    */
+/* 3: addUser                                         */
+/* 4: deleteUser                                      */
+/* 5: updateUser                                      */
+/* ================================================== */
+
+/* ================================================== */
+/* 1: allUsers                                        */
+/* ================================================== */
 
 const allUsers = {
   schema: {
@@ -18,7 +31,7 @@ const allUsers = {
         items: {
           type: 'object',
           properties: {
-            id: { type: 'string' },
+            _id: { type: 'string' },
             user: { type: 'string' },
             age: { type: 'number' },
             city: { type: 'string' },
@@ -28,9 +41,13 @@ const allUsers = {
     },
   },
   handler: (req: FastifyRequest, res: FastifyReply) => {
-    res.send(usersData);
+    res.code(200).send(usersData);
   },
 };
+
+/* ================================================== */
+/* 2: findUserById                                    */
+/* ================================================== */
 
 const findUserById = {
   schema: {
@@ -38,7 +55,7 @@ const findUserById = {
       200: {
         type: 'object',
         properties: {
-          id: { type: 'string' },
+          _id: { type: 'string' },
           user: { type: 'string' },
           age: { type: 'number' },
           city: { type: 'string' },
@@ -57,16 +74,20 @@ const findUserById = {
       id: string;
     }
     const data = usersData.find(
-      (item) => (item as UserProps).id === (req.params as params).id
+      (user: UserProps) => user._id === (req.params as params).id
     );
 
     if (data) {
-      res.send(data);
+      res.code(200).send(data);
     } else {
       res.code(404).send({ message: 'Not found' });
     }
   },
 };
+
+/* ================================================== */
+/* 3: addUser                                         */
+/* ================================================== */
 
 const addUser = {
   schema: {
@@ -74,16 +95,16 @@ const addUser = {
       type: 'object',
       required: ['user', 'age', 'city'],
       properties: {
-        user: { type: 'string' },
+        user: { type: 'string', pattern: '[a-zA-Z]' },
         age: { type: 'number' },
-        city: { type: 'string' },
+        city: { type: 'string', pattern: '[a-zA-Z]' },
       },
     },
     response: {
       201: {
         type: 'object',
         properties: {
-          id: { type: 'string' },
+          _id: { type: 'string' },
           user: { type: 'string' },
           age: { type: 'number' },
           city: { type: 'string' },
@@ -97,26 +118,25 @@ const addUser = {
       age: number;
       city: string;
     }
-
-    const data = {
-      id: uuidv4(),
-      user: (req.body as requestBody).user,
-      age: (req.body as requestBody).age,
-      city: (req.body as requestBody).city,
-    };
+    const { user, age, city } = req.body as requestBody;
+    const data = { _id: uuidv4(), user, age, city };
     usersData = [...usersData, data];
 
     res.code(201).send(data);
   },
 };
 
+/* ================================================== */
+/* 4: deleteUser                                      */
+/* ================================================== */
+
 const deleteUser = {
   schema: {
     body: {
       type: 'object',
-      required: ['id'],
+      required: ['_id'],
       properties: {
-        id: { type: 'string' },
+        _id: { type: 'string' },
       },
     },
     response: {
@@ -126,33 +146,52 @@ const deleteUser = {
           message: { type: 'string' },
         },
       },
+      404: {
+        type: 'object',
+        properties: {
+          message: { type: 'string' },
+        },
+      },
     },
   },
   handler: (req: FastifyRequest, res: FastifyReply) => {
     interface requestBody {
-      id: string;
+      _id: string;
     }
-    usersData = usersData.filter(
-      (user) => (user as UserProps).id !== (req.body as requestBody).id
-    );
-    res.send({ message: 'User deleted' });
+
+    const { _id } = req.body as requestBody;
+    const initialDataLength = usersData.length;
+    usersData = usersData.filter((user: UserProps) => user._id !== _id);
+
+    if (initialDataLength === usersData.length + 1) {
+      res.code(200).send({ message: 'User deleted' });
+    } else {
+      res.code(404).send({ message: 'Not found' });
+    }
   },
 };
+
+/* ================================================== */
+/* 5: updateUser                                      */
+/* ================================================== */
 
 const updateUser = {
   schema: {
     body: {
       type: 'object',
-      required: ['id'],
+      required: ['_id'],
       properties: {
-        id: { type: 'string' },
+        _id: { type: 'string' },
+        user: { type: 'string', pattern: '[a-zA-Z]' },
+        age: { type: 'number' },
+        city: { type: 'string', pattern: '[a-zA-Z]' },
       },
     },
     response: {
       200: {
         type: 'object',
         properties: {
-          id: { type: 'string' },
+          _id: { type: 'string' },
           user: { type: 'string' },
           age: { type: 'number' },
           city: { type: 'string' },
@@ -168,35 +207,34 @@ const updateUser = {
   },
   handler: (req: FastifyRequest, res: FastifyReply) => {
     interface requestBody {
-      id: string;
-      user: string;
-      age: number;
-      city: string;
+      _id: Required<string>;
+      user?: string;
+      age?: number;
+      city?: string;
     }
 
-    const { id, user, age, city } = req.body as requestBody;
+    const { _id, user, age, city } = req.body as requestBody;
 
     usersData = usersData.map((item: UserProps) => {
-      if(item.id === id){
+      if (item._id === _id) {
         return {
           ...item,
           user: user ? user : item.user,
           age: age ? age : item.age,
           city: city ? city : item.city,
         };
+      } else {
+        return item;
       }
-      return item;
-    })
+    });
 
-    const data = usersData.find(
-      (item: UserProps) => item.id === id
-    );
-    if(data){
-    res.send(data);
+    const data = usersData.find((item: UserProps) => item._id === _id);
+    if (data) {
+      res.code(200).send(data);
     } else {
-      res.code(404).send({message: 'Not Found'})
+      res.code(404).send({ message: 'Not Found' });
     }
-    }
+  },
 };
 
 export default {
