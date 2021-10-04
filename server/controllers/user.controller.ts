@@ -152,6 +152,12 @@ const deleteUser = {
           message: { type: 'string' },
         },
       },
+      400: {
+        type: 'object',
+        properties: {
+          message: { type: 'string' },
+        },
+      },
     },
   },
   handler: (req: FastifyRequest, res: FastifyReply) => {
@@ -203,6 +209,12 @@ const updateUser = {
           message: { type: 'string' },
         },
       },
+      400: {
+        type: 'object',
+        properties: {
+          message: { type: 'string' },
+        },
+      },
     },
   },
   handler: (req: FastifyRequest, res: FastifyReply) => {
@@ -232,7 +244,7 @@ const updateUser = {
     if (data) {
       res.code(200).send(data);
     } else {
-      res.code(404).send({ message: 'Not Found' });
+      res.code(404).send({ message: 'Not found' });
     }
   },
 };

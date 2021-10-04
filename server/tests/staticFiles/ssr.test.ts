@@ -63,26 +63,28 @@ describe('Static files test suite', () => {
     expect(typeof response.body).toEqual(typeof 'string');
   });
 
+  // ===================================================================================
+
   it('Handles random routes', async () => {
     let response = await app.inject({
       method: 'GET',
       url: '/fsdafadsf/asdf/ads/f/asdf/a/sdfa/',
     });
     expect(response.statusCode).toBe(302);
-    expect(response.headers.location).toEqual('/404')
+    expect(response.headers.location).toEqual('/404');
 
     response = await app.inject({
       method: 'GET',
       url: `/fsd1232131!-=fvdsa''\][412'341`,
     });
     expect(response.statusCode).toBe(302);
-    expect(response.headers.location).toEqual('/404')
+    expect(response.headers.location).toEqual('/404');
 
     response = await app.inject({
       method: 'GET',
       url: `421341/234/123/4/123/41/234/12/43`,
     });
     expect(response.statusCode).toBe(302);
-    expect(response.headers.location).toEqual('/404')
+    expect(response.headers.location).toEqual('/404');
   });
 });

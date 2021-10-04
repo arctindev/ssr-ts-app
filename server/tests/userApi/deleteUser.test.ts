@@ -79,4 +79,39 @@ describe('deleteUser endpoint test suite', () => {
     );
     expect(response.body).toEqual(JSON.stringify({ message: 'Not found' }));
   });
+
+  // ===================================================================================
+
+  it('Sends correct messages for bad data', async () => {
+    const response = await app.inject({
+      method: 'DELETE',
+      url: '/api/user/',
+      payload: {
+        _idddd: '948',
+      },
+    });
+    expect(response.statusCode).toBe(400);
+    expect(response.headers['content-type']).toEqual(
+      'application/json; charset=utf-8'
+    );
+    expect(response.body).toEqual(
+      JSON.stringify({ message: "body should have required property '_id'" })
+    );
+  });
+
+  // ===================================================================================
+
+  it('Sends correct messages for empty data', async () => {
+    const response = await app.inject({
+      method: 'DELETE',
+      url: '/api/user/',
+    });
+    expect(response.statusCode).toBe(400);
+    expect(response.headers['content-type']).toEqual(
+      'application/json; charset=utf-8'
+    );
+    expect(response.body).toEqual(
+      JSON.stringify({ message: "body should be object" })
+    );
+  });
 });

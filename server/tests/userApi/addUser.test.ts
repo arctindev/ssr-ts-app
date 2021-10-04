@@ -4,8 +4,10 @@
 
 import app from '../../server';
 
-describe('allUser endpoint test suite', () => {
+describe('addUser endpoint test suite', () => {
   afterAll(() => app.close());
+
+  // ===================================================================================
 
   it('Sends good add user response', async () => {
     const response = await app.inject({
@@ -26,6 +28,8 @@ describe('allUser endpoint test suite', () => {
     expect(addUserBody.age).toEqual(28);
     expect(addUserBody.city).toEqual('tarnow');
   });
+
+  // ===================================================================================
 
   it('Checks if user was successfuly added', async () => {
     let response = await app.inject({

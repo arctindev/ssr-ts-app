@@ -7,6 +7,8 @@ import app from '../../server';
 describe('findUserById endpoint test suite', () => {
   afterAll(() => app.close());
 
+  // ===================================================================================
+
   it('Sends good get user response', async () => {
     const response = await app.inject({
       method: 'GET',
@@ -20,6 +22,8 @@ describe('findUserById endpoint test suite', () => {
       JSON.stringify({ _id: '2', user: 'aniak', age: 23, city: 'krakow' })
     );
   });
+
+  // ===================================================================================
 
   it('Sends good get not existing user response', async () => {
     const response = await app.inject({
