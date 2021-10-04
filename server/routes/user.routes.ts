@@ -9,8 +9,8 @@ export default (
   app.get('/:id', userController.findUserById);
   app.get('/', userController.allUsers);
   app.post('/', userController.addUser);
-  app.patch('/', userController.updateUser);
   app.delete('/', userController.deleteUser);
+  app.patch('/', userController.updateUser);
 
   done();
 };

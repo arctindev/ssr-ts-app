@@ -16,7 +16,7 @@ describe('Static files test suite', () => {
     expect(response.headers['content-type']).toEqual(
       'text/html; charset=utf-8'
     );
-    expect(typeof response.body).toEqual(typeof 'string')
+    expect(typeof response.body).toEqual(typeof 'string');
   });
 
   it('Sends about page html file', async () => {
@@ -28,7 +28,7 @@ describe('Static files test suite', () => {
     expect(response.headers['content-type']).toEqual(
       'text/html; charset=utf-8'
     );
-    expect(typeof response.body).toEqual(typeof 'string')
+    expect(typeof response.body).toEqual(typeof 'string');
   });
 
   it('Sends services page html file', async () => {
@@ -40,7 +40,7 @@ describe('Static files test suite', () => {
     expect(response.headers['content-type']).toEqual(
       'text/html; charset=utf-8'
     );
-    expect(typeof response.body).toEqual(typeof 'string')
+    expect(typeof response.body).toEqual(typeof 'string');
   });
 
   it('Sends 404 page html file', async () => {
@@ -52,6 +52,6 @@ describe('Static files test suite', () => {
     expect(response.headers['content-type']).toEqual(
       'text/html; charset=utf-8'
     );
-    expect(typeof response.body).toEqual(typeof 'string')
+    expect(typeof response.body).toEqual(typeof 'string');
   });
 });

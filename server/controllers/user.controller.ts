@@ -5,7 +5,9 @@ let usersData: object[] = data;
 
 interface UserProps {
   id: string;
-  name: string;
+  user: string;
+  age: number;
+  city: string;
 }
 
 const allUsers = {
@@ -45,9 +47,9 @@ const findUserById = {
       404: {
         type: 'object',
         properties: {
-          message: {type: 'string'}
-        }
-      }
+          message: { type: 'string' },
+        },
+      },
     },
   },
   handler: (req: FastifyRequest, res: FastifyReply) => {
@@ -58,10 +60,10 @@ const findUserById = {
       (item) => (item as UserProps).id === (req.params as params).id
     );
 
-    if(data) {
-    res.send(data);
+    if (data) {
+      res.send(data);
     } else {
-    res.code(404).send({message: 'Not found'})
+      res.code(404).send({ message: 'Not found' });
     }
   },
 };
@@ -103,6 +105,7 @@ const addUser = {
       city: (req.body as requestBody).city,
     };
     usersData = [...usersData, data];
+
     res.code(201).send(data);
   },
 };
@@ -129,16 +132,65 @@ const deleteUser = {
     interface requestBody {
       id: string;
     }
-
-    res.code(200).send({message: 'User deleted'});
+    usersData = usersData.filter(
+      (user) => (user as UserProps).id !== (req.body as requestBody).id
+    );
+    res.send({ message: 'User deleted' });
   },
-}
+};
 
-const updateUser = (req: FastifyRequest, res: FastifyReply) => {
-  res
-    .code(200)
-    .header('Content-Type', 'application/json')
-    .send({ user: 'update' });
+const updateUser = {
+  schema: {
+    body: {
+      type: 'object',
+      required: ['id'],
+      properties: {
+        id: { type: 'string' },
+      },
+    },
+    response: {
+      200: {
+        type: 'object',
+        properties: {
+          id: { type: 'string' },
+          user: { type: 'string' },
+          age: { type: 'number' },
+          city: { type: 'string' },
+        },
+      },
+    },
+  },
+  handler: (req: FastifyRequest, res: FastifyReply) => {
+    interface requestBody {
+      id: string;
+      user: string;
+      age: number;
+      city: string;
+    }
+
+    const { id, user, age, city } = req.body as requestBody;
+
+    usersData = usersData.map((item: UserProps) => {
+      if(item.id === id){
+        return {
+          ...item,
+          user: user ? user : item.user,
+          age: age ? age : item.age,
+          city: city ? city : item.city,
+        };
+      }
+      return item;
+    })
+
+    const data = usersData.find(
+      (item: UserProps) => item.id === id
+    );
+    if(data){
+    res.send(data);
+    } else {
+      res.code(404).send({message: 'Not Found'})
+    }
+    }
 };
 
 export default {
