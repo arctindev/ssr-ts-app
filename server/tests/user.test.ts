@@ -40,16 +40,14 @@ describe('User test suite', () => {
     );
 
     response = await app.inject({
-        method: 'GET',
-        url: '/api/user/9',
-      });
-      expect(response.statusCode).toBe(404);
-      expect(response.headers['content-type']).toEqual(
-        'application/json; charset=utf-8'
-      );
-      expect(response.body).toEqual(
-        JSON.stringify({ message: 'Not found'})
-      );
+      method: 'GET',
+      url: '/api/user/9',
+    });
+    expect(response.statusCode).toBe(404);
+    expect(response.headers['content-type']).toEqual(
+      'application/json; charset=utf-8'
+    );
+    expect(response.body).toEqual(JSON.stringify({ message: 'Not found' }));
   });
 
   it('Sends good add user response', async () => {
@@ -90,57 +88,71 @@ describe('User test suite', () => {
     );
   });
 
-//   it('Sends good delete user response', async () => {
-//     let response = await app.inject({
-//       method: 'DELETE',
-//       url: '/api/user/',
-//       payload: {
-//         id: '2',
-//       },
-//     });
-//     expect(response.statusCode).toBe(200);
-//     expect(response.headers['content-type']).toEqual(
-//       'application/json; charset=utf-8'
-//     );
-//     expect(response.body).toEqual(JSON.stringify({ message: 'User deleted' }));
+  it('Sends good delete user response', async () => {
+    let response = await app.inject({
+        method: 'GET',
+        url: '/api/user/2',
+      });
+      expect(response.statusCode).toBe(200);
+      expect(response.headers['content-type']).toEqual(
+        'application/json; charset=utf-8'
+      );
+      expect(response.body).toEqual(
+        JSON.stringify({ id: '2', user: 'aniak', age: 23, city: 'kraków' })
+      );
+    
+    response = await app.inject({
+      method: 'DELETE',
+      url: '/api/user/',
+      payload: {
+        id: '2',
+      },
+    });
+    expect(response.statusCode).toBe(200);
+    expect(response.headers['content-type']).toEqual(
+      'application/json; charset=utf-8'
+    );
+    expect(response.body).toEqual(JSON.stringify({ message: 'User deleted' }));
 
-//     response = await app.inject({
-//       method: 'GET',
-//       url: '/api/user/2',
-//     });
-//     expect(response.statusCode).toBe(404);
-//     expect(response.headers['content-type']).toEqual(
-//       'application/json; charset=utf-8'
-//     );
-//     expect(response.body).toEqual(JSON.stringify({ message: 'Not found' }));
-//   });
+    response = await app.inject({
+      method: 'GET',
+      url: '/api/user/2',
+    });
+    expect(response.statusCode).toBe(404);
+    expect(response.headers['content-type']).toEqual(
+      'application/json; charset=utf-8'
+    );
+    expect(response.body).toEqual(JSON.stringify({ message: 'Not found' }));
+  });
 
-//   it('Sends good update user response', async () => {
-//     let response = await app.inject({
-//       method: 'PATCH',
-//       url: '/api/user/',
-//       payload: {
-//         id: '2',
-//         age: 25,
-//         city: 'katowice',
-//       },
-//     });
-//     expect(response.statusCode).toBe(200);
-//     expect(response.headers['content-type']).toEqual(
-//       'application/json; charset=utf-8'
-//     );
-//     expect(response.body).toEqual(
-//       JSON.stringify({ id: '2', user: 'aniak', age: 25, city: 'katowice' })
-//     );
+  it('Sends good update user response', async () => {
+    let response = await app.inject({
+      method: 'PATCH',
+      url: '/api/user/',
+      payload: {
+        id: "3",
+        age: 25,
+        city: 'katowice',
+      },
+    });
+    expect(response.statusCode).toBe(200);
+    expect(response.headers['content-type']).toEqual(
+      'application/json; charset=utf-8'
+    );
+    expect(response.body).toEqual(
+      JSON.stringify({ id: '3', user: 'robert', age: 25, city: 'katowice' })
+    );
 
-//     response = await app.inject({
-//         method: 'GET',
-//         url: '/api/user/2',
-//       });
-//       expect(response.statusCode).toBe(200);
-//       expect(response.headers['content-type']).toEqual(
-//         'application/json; charset=utf-8'
-//       );
-//       expect(response.body).not.toEqual(JSON.stringify({ id: '2', user: 'aniak', age: 23, city: 'kraków' }));
-//   });
+    response = await app.inject({
+      method: 'GET',
+      url: '/api/user/3',
+    });
+    expect(response.statusCode).toBe(200);
+    expect(response.headers['content-type']).toEqual(
+      'application/json; charset=utf-8'
+    );
+    expect(response.body).not.toEqual(
+      JSON.stringify({ id: '3', user: 'robert', age: 18, city: 'reszów' })
+    );
+  });
 });
