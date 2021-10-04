@@ -10,6 +10,9 @@ export default (
   app.get('/about', sendHTML);
   app.get('/services', sendHTML);
   app.get('/404', sendHTML);
+  app.setNotFoundHandler((req: any, res: any) => {
+    res.redirect('/404');
+  });
 
   done();
 };

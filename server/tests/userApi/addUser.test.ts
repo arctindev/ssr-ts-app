@@ -9,23 +9,23 @@ describe('allUser endpoint test suite', () => {
 
   it('Sends good add user response', async () => {
     const response = await app.inject({
-        method: 'POST',
-        url: '/api/user/',
-        payload: {
-          user: 'lukasz',
-          age: 28,
-          city: 'tarnow',
-        },
-      });
-      expect(response.statusCode).toBe(201);
-      expect(response.headers['content-type']).toEqual(
-        'application/json; charset=utf-8'
-      );
-      const addUserBody = JSON.parse(response.body);
-      expect(addUserBody.user).toEqual('lukasz');
-      expect(addUserBody.age).toEqual(28);
-      expect(addUserBody.city).toEqual('tarnow');
-  })
+      method: 'POST',
+      url: '/api/user/',
+      payload: {
+        user: 'lukasz',
+        age: 28,
+        city: 'tarnow',
+      },
+    });
+    expect(response.statusCode).toBe(201);
+    expect(response.headers['content-type']).toEqual(
+      'application/json; charset=utf-8'
+    );
+    const addUserBody = JSON.parse(response.body);
+    expect(addUserBody.user).toEqual('lukasz');
+    expect(addUserBody.age).toEqual(28);
+    expect(addUserBody.city).toEqual('tarnow');
+  });
 
   it('Checks if user was successfuly added', async () => {
     let response = await app.inject({
