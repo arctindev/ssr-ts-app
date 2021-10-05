@@ -111,7 +111,7 @@ describe('deleteUser endpoint test suite', () => {
       'application/json; charset=utf-8'
     );
     expect(response.body).toEqual(
-      JSON.stringify({ message: "body should be object" })
+      JSON.stringify({ message: 'body should be object' })
     );
   });
 });

@@ -87,7 +87,9 @@ describe('addUser endpoint test suite', () => {
       'application/json; charset=utf-8'
     );
     const addUserBody = JSON.parse(response.body);
-    expect(addUserBody).toEqual({message: 'body.user should match pattern "[a-zA-Z]"'})
+    expect(addUserBody).toEqual({
+      message: 'body.user should match pattern "[a-zA-Z]"',
+    });
   });
 
   // ===================================================================================
@@ -107,7 +109,9 @@ describe('addUser endpoint test suite', () => {
       'application/json; charset=utf-8'
     );
     const addUserBody = JSON.parse(response.body);
-    expect(addUserBody).toEqual({message: 'body.city should match pattern "[a-zA-Z]"'})
+    expect(addUserBody).toEqual({
+      message: 'body.city should match pattern "[a-zA-Z]"',
+    });
   });
 
   // ===================================================================================
@@ -126,7 +130,9 @@ describe('addUser endpoint test suite', () => {
       'application/json; charset=utf-8'
     );
     const addUserBody = JSON.parse(response.body);
-    expect(addUserBody).toEqual({message: "body should have required property 'user'"})
+    expect(addUserBody).toEqual({
+      message: "body should have required property 'user'",
+    });
   });
 
   // ===================================================================================
@@ -145,12 +151,14 @@ describe('addUser endpoint test suite', () => {
       'application/json; charset=utf-8'
     );
     const addUserBody = JSON.parse(response.body);
-    expect(addUserBody).toEqual({message: "body should have required property 'age'"})
+    expect(addUserBody).toEqual({
+      message: "body should have required property 'age'",
+    });
   });
 
-// ===================================================================================
+  // ===================================================================================
 
-it('Checks if api handles not present required data', async () => {
+  it('Checks if api handles not present required data', async () => {
     const response = await app.inject({
       method: 'POST',
       url: '/api/user/',
@@ -164,7 +172,8 @@ it('Checks if api handles not present required data', async () => {
       'application/json; charset=utf-8'
     );
     const addUserBody = JSON.parse(response.body);
-    expect(addUserBody).toEqual({message: "body should have required property 'city'"})
+    expect(addUserBody).toEqual({
+      message: "body should have required property 'city'",
+    });
   });
-
 });
