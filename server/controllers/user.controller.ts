@@ -110,6 +110,12 @@ const addUser = {
           city: { type: 'string' },
         },
       },
+      400: {
+        type: 'object',
+        properties: {
+          message: { type: 'string' },
+        },
+      },
     },
   },
   handler: (req: FastifyRequest, res: FastifyReply) => {

@@ -69,4 +69,102 @@ describe('addUser endpoint test suite', () => {
       })
     );
   });
+
+  // ===================================================================================
+
+  it('Checks if validation works correctly', async () => {
+    const response = await app.inject({
+      method: 'POST',
+      url: '/api/user/',
+      payload: {
+        user: 43,
+        age: 28,
+        city: 'tarnow',
+      },
+    });
+    expect(response.statusCode).toBe(400);
+    expect(response.headers['content-type']).toEqual(
+      'application/json; charset=utf-8'
+    );
+    const addUserBody = JSON.parse(response.body);
+    expect(addUserBody).toEqual({message: 'body.user should match pattern "[a-zA-Z]"'})
+  });
+
+  // ===================================================================================
+
+  it('Checks if validation works correctly', async () => {
+    const response = await app.inject({
+      method: 'POST',
+      url: '/api/user/',
+      payload: {
+        user: 'adam',
+        age: 28,
+        city: 43,
+      },
+    });
+    expect(response.statusCode).toBe(400);
+    expect(response.headers['content-type']).toEqual(
+      'application/json; charset=utf-8'
+    );
+    const addUserBody = JSON.parse(response.body);
+    expect(addUserBody).toEqual({message: 'body.city should match pattern "[a-zA-Z]"'})
+  });
+
+  // ===================================================================================
+
+  it('Checks if api handles not present required data', async () => {
+    const response = await app.inject({
+      method: 'POST',
+      url: '/api/user/',
+      payload: {
+        age: 28,
+        city: 'poznan',
+      },
+    });
+    expect(response.statusCode).toBe(400);
+    expect(response.headers['content-type']).toEqual(
+      'application/json; charset=utf-8'
+    );
+    const addUserBody = JSON.parse(response.body);
+    expect(addUserBody).toEqual({message: "body should have required property 'user'"})
+  });
+
+  // ===================================================================================
+
+  it('Checks if api handles not present required data', async () => {
+    const response = await app.inject({
+      method: 'POST',
+      url: '/api/user/',
+      payload: {
+        user: 'ania',
+        city: 'poznan',
+      },
+    });
+    expect(response.statusCode).toBe(400);
+    expect(response.headers['content-type']).toEqual(
+      'application/json; charset=utf-8'
+    );
+    const addUserBody = JSON.parse(response.body);
+    expect(addUserBody).toEqual({message: "body should have required property 'age'"})
+  });
+
+// ===================================================================================
+
+it('Checks if api handles not present required data', async () => {
+    const response = await app.inject({
+      method: 'POST',
+      url: '/api/user/',
+      payload: {
+        user: 'ania',
+        age: 29,
+      },
+    });
+    expect(response.statusCode).toBe(400);
+    expect(response.headers['content-type']).toEqual(
+      'application/json; charset=utf-8'
+    );
+    const addUserBody = JSON.parse(response.body);
+    expect(addUserBody).toEqual({message: "body should have required property 'city'"})
+  });
+
 });
