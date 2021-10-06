@@ -16,6 +16,7 @@ app.register(fastifyStatic, {
 });
 
 app.register(userRoutes, { prefix: '/api/user' });
+
 app.register(oauthRoutes, { prefix: '/auth' });
 
 export default app;
