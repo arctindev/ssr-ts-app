@@ -1,7 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { Octokit } from '@octokit/core';
 import axios, { AxiosResponse } from 'axios';
-import 'dotenv/config';
 
 const getGithubOAuthUserData = async (accessToken: string) => {
     try {
@@ -47,6 +46,4 @@ const githubConnect = async (req: FastifyRequest, res: FastifyReply) => {
     }
   }
 
-export default {
-    githubConnect
-};
+export default githubConnect;
